@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Page Title</title>
+  </head>
+  <body>
+    <input type="text" id="input" placeholder="type here" />
+
+    <ul id="list"></ul>
+    <script>
+      const input = document.getElementById("input");
+      const list = document.getelementById("list");
+
+      input.addEventListener("keyup", (event) => {
+        if (event.key.toLocaleLowerCase() == "enter") {
+          const value = event.targe.value;
+          const li = document.createElement("li");
+          const textNode = document.createTextNode(value);
+          li.appendChild(textNode);
+          list.appendChild(li);
+        }
+      });
+    </script>
+  </body>
+</html>

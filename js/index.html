@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Page Title</title>
+  </head>
+  <body>
+    <figure>
+      <img id="img" src="invalid" alt="invalid" />
+      <figcaption id="caption">invalid</figcaption>
+    </figure>
+    <button id="button">Click Me</button>
+    <script>
+      const getFox = async () => {
+        let res = await fetch("https://randomfox.ca/floof/");
+        let json = await res.json();
+
+        return json;
+      };
+
+      const img = document.getElementById("img");
+      const caption = document.getElementById("caption");
+      const button = document.getElementById("button");
+
+      button.addEventListener("click", async () => {
+        button.disabled = true;
+        button.innerText = "Loading...";
+        const { image, link } = await getFox();
+        img.src = image;
+        caption.innerText = link;
+      });
+
+      img.addEventListener("load", () => {
+        button.disabled = false;
+        button.innerText = "Click Me";
+      });
+    </script>
+  </body>
+</html>
